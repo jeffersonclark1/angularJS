@@ -17,4 +17,19 @@ angular.module('alurapic').controller('FotosControllers',function($scope, $http)
     console.log(err);
   });
 
+  $scope.remover = function(foto){
+    $http.delete('v1/fotos/' + foto._id)
+      .success(function(){
+        var indiceFoto = $scope.fotos.indexOf(foto);
+
+        $scope.fotos.splice(indiceFoto, 1);
+
+        alert("Excluida com sucesso")
+
+       })
+      .error(function(err){
+        console.log(err);
+      });
+  }
+
 });

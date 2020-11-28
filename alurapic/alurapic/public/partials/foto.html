@@ -2,9 +2,9 @@
   <h1>{{foto.titulo}}</h1>
 </div>
 
-<span ng-show = "success" 
+<span ng-show = "success.length" 
     class="form-control alert-success">
-    Formulario enviado com sucesso
+    {{success}}
 </span>
 
 <form novalidate name="formulario" class="row" ng-submit="submeter()">
