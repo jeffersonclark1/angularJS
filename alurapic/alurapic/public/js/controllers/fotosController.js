@@ -1,33 +1,20 @@
-angular.module('alurapic').controller('FotosControllers',function($scope, $http){
+angular.module('alurapic').controller('FotosControllers',function($scope, recursoFoto){
+
   $scope.fotos = [];
   $scope.filtro = '';
 
-  // var promise = $http.get('v1/fotos');
-  // promise.then(function(retorno){
-  //   $scope.fotos = retorno.data;
-  // }).catch(function(err){
-  //   console.log(err);
-  // });
-
-  $http.get('v1/fotos')
-  .success(function(fotos){
-    $scope.fotos = fotos;
-  })
-  .error(function(err){
-    console.log(err);
+  recursoFoto.query(function(fotos){
+    $scope.fotos = fotos; 
+  }, function(erro){
+    console.log(erro);
   });
-
+  
   $scope.remover = function(foto){
-    $http.delete('v1/fotos/' + foto._id)
-      .success(function(){
+    recursoFoto.delete({fotoId: foto._id},function(){
         var indiceFoto = $scope.fotos.indexOf(foto);
-
         $scope.fotos.splice(indiceFoto, 1);
-
-        alert("Excluida com sucesso")
-
-       })
-      .error(function(err){
+        alert("Excluida com sucesso resource");
+      },function(erro){
         console.log(err);
       });
   }
