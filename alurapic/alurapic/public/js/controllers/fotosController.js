@@ -13,7 +13,6 @@ angular.module('alurapic').controller('FotosControllers',function($scope, recurs
     recursoFoto.delete({fotoId: foto._id},function(){
         var indiceFoto = $scope.fotos.indexOf(foto);
         $scope.fotos.splice(indiceFoto, 1);
-        alert("Excluida com sucesso resource");
       },function(erro){
         console.log(err);
       });
